@@ -89,3 +89,28 @@ console.log(userScheme5.parse(userData5));
 
 
 // zod interface typescript
+const userscheme6 = z.object({
+    name : z.string(),
+    age : z.number(),
+    email : z.string().email(),
+})
+
+type User = z.infer<typeof userscheme6>;
+const userData6: User = {
+    name : 'dhanushkumar',
+    age : 30,
+    email : "dhanushkumaramk@gmail.com"
+}
+
+const validUser6 = userscheme6.parse(userData6);
+console.log(validUser6);
+
+
+// zod union
+const userScheme7 = z.union([z.string(), z.number()]);
+const userData7 = "dhanushkumar";
+const userData8 = 30;
+const validUser7 = userScheme7.parse(userData7);
+const validUser8 = userScheme7.parse(userData8);
+console.log(validUser7);
+console.log(validUser8);
